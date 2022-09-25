@@ -1,18 +1,173 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="es">
 <head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="favicon.ico">
+
+<title>Jobs App | Funny Jobs.</title>
+<!-- Bootstrap core CSS -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="bootstrap/css/jumbotron.css" rel="stylesheet">
+<link href="bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
+
 <body>
-	<!-- <h1 th:text="${mensaje}"></h1>	
-	<h2>Hoy es: [[${fecha}]]</h2> -->
-	
-	<h1>Bienvenido</h1>
-	<h2>Oferta de trabajo</h2>
-	<h3 th:text="'Titulo: ' +  ${nombre}"></h3>
-	<h3 th:text="'Fecha: ' +  ${fecha}"></h3>
-	<h3 th:text="'Salario Ofrecido: ' +  ${salario}"></h3>
-	<h3 th:text="'Vigente: ' +  ${vigente}"></h3>
+
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" href="#">Jobs App</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarsExampleDefault"
+				aria-controls="navbarsExampleDefault" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link active" href="#">Inicio</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Menu 1</a></li>
+				</ul>
+				<a class="btn btn-primary" href="#">Ingresar</a>&nbsp; <a
+					class="btn btn-primary" href="#">Registrarse</a>
+			</div>
+		</nav>
+	</header>
+
+	<main role="main">
+
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="jumbotron">
+			<div class="container">
+				<h3>Encuentra el trabajo que andas buscando.</h3>
+				Puedes buscar por descripción y categoría.
+				<form class="form-inline">
+					<input type="text" class="form-control mb-3"
+						id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
+					<select class="custom-select custom-select mb-3">
+						<option selected>Seleccione una categoría</option>
+						<option value="1">Ventas</option>
+						<option value="2">Contabilidad</option>
+						<option value="3">Transporte</option>
+						<option value="4">Informática</option>
+						<option value="5">Construcción</option>
+					</select>&nbsp;
+					<button type="submit" class="btn btn-primary mb-3">Buscar</button>
+				</form>
+			</div>
+		</div>
+		<hr>
+
+		<div class="container">
+			<h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
+			<hr>
+			<div class="row justify-content-center align-items-center">
+				<div class="col-md-3">
+					<img class="rounded mx-auto d-block img-thumbnail img-fluid"
+						src="img/logo1.png" alt="Generic placeholder image">
+				</div>
+				<div class="col-md-9">
+					<h2>Arquitecto</h2>
+					<h6 class="card-title">
+						<strong>Categoría: </strong> <span>Arquitectura</span>
+					</h6>
+					<h6 class="card-title">
+						<strong>Publicado: </strong> <span>2019-01-01 </span>
+					</h6>
+					<p>Lorem Ipsum is simply dummy text of the printing and
+						typesetting industry. Lorem Ipsum has been the industry's standard
+						dummy text ever since the 1500s, when an unknown printer took a
+						galley of type and scrambled it to make a type specimen book. It
+						has survived not only five centuries, but also the leap into
+						electronic typesetting, remaining essentially unchanged. It was
+						popularised in the 1960s with the release of Letraset sheets
+						containing Lorem Ipsum passages, and more recently with desktop
+						publishing software like Aldus PageMaker including versions of
+						Lorem Ipsum.</p>
+					<p>
+						<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+					</p>
+				</div>
+			</div>
+			<div class="row justify-content-center align-items-center">
+				<div class="col-md-3 justify-content-center align-items-center">
+					<img class="rounded mx-auto d-block img-thumbnail img-fluid"
+						src="img/logo2.png" alt="Generic placeholder image">
+				</div>
+				<div class="col-md-9">
+					<h2>Ingeniero Agrónomo</h2>
+					<h6 class="card-title">
+						<strong>Categoría: </strong> <span>Agronomía/Agrícultura</span>
+					</h6>
+					<h6 class="card-title">
+						<strong>Publicado: </strong> <span>2019-01-05 </span>
+					</h6>
+					<p>Lorem Ipsum is simply dummy text of the printing and
+						typesetting industry. Lorem Ipsum has been the industry's standard
+						dummy text ever since the 1500s, when an unknown printer took a
+						galley of type and scrambled it to make a type specimen book. It
+						has survived not only five centuries, but also the leap into
+						electronic typesetting, remaining essentially unchanged. It was
+						popularised in the 1960s with the release of Letraset sheets
+						containing Lorem Ipsum passages, and more recently with desktop
+						publishing software like Aldus PageMaker including versions of
+						Lorem Ipsum.</p>
+					<p>
+						<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+					</p>
+				</div>
+			</div>
+			<div class="row justify-content-center align-items-center">
+				<div class="col-md-3 justify-content-center align-items-center">
+					<img class="rounded mx-auto d-block img-thumbnail img-fluid"
+						src="img/logo3.png" alt="Generic placeholder image">
+				</div>
+				<div class="col-md-9">
+					<h2>Ejecutivo de Ventas</h2>
+					<h6 class="card-title">
+						<strong>Categoría: </strong> <span>Ventas</span>
+					</h6>
+					<h6 class="card-title">
+						<strong>Publicado: </strong> <span>2019-02-07 </span>
+					</h6>
+					<p>Lorem Ipsum is simply dummy text of the printing and
+						typesetting industry. Lorem Ipsum has been the industry's standard
+						dummy text ever since the 1500s, when an unknown printer took a
+						galley of type and scrambled it to make a type specimen book. It
+						has survived not only five centuries, but also the leap into
+						electronic typesetting, remaining essentially unchanged. It was
+						popularised in the 1960s with the release of Letraset sheets
+						containing Lorem Ipsum passages, and more recently with desktop
+						publishing software like Aldus PageMaker including versions of
+						Lorem Ipsum.</p>
+					<p>
+						<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+					</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</main>
+
+	<footer class="footer">
+		<div class="container">
+			<p>
+				©2022 Copyright: Jobs App | Web Thymeleaf Spring | Autor: Rufino
+				Rojas Martienez | &middot; <a href="#">Privacy</a> &middot; <a
+					href="#">Terms</a>
+			</p>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
