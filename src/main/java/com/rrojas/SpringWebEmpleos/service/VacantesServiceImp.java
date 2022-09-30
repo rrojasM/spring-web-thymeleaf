@@ -20,8 +20,14 @@ public class VacantesServiceImp implements VacantesService {
 
 			Vacante vacante1 = new Vacante();
 			vacante1.setId(1);
-			vacante1.setNombre("Desarrollador Android");
-			vacante1.setDescripcion("Generar aplicaciones android");
+			vacante1.setNombre("Desarrolador Android Nativo");
+			vacante1.setDescripcion("Más de 5 años desarrollando aplicaciones móviles\r\n"
+					+ "Conocimiento profundo de Firebase, Kotlin, Android SDK, MVVM, MVC, MVP.\r\n"
+					+ "Experiencia en Geolocalización, rutas, polígonos y monitoreo en tiempo real\r\n"
+					+ "Experiencia integrando APIs en GraphQL, Cámara y Geolocalización (Maps y Mapbox)\r\n"
+					+ "Experiencia utilizando patrones de diseño y buenas prácticas de programación\r\n"
+					+ "Experiencia realizando Pruebas Unitarias\r\n"
+					+ "Experiencia con Clean Code y Principios Solid");
 			vacante1.setFecha(formatDate.parse("10-10-2022"));
 			vacante1.setSalario(25000.0);
 			vacante1.setDestacado(1);
