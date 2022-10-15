@@ -1,5 +1,7 @@
 package com.rrojas.SpringWebEmpleos.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,25 +38,21 @@ public class VacantesController {
 		return "mensaje";
 	}
 	
-	
 	@GetMapping("/create")
 	public String crearVacante() {
 		return "vacantes/formVacante";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@RequestParam("nombre") String nombre, @RequestParam("descripcion") String descripcion, @RequestParam("estatus") String estatus,
-			@RequestParam("fecha") String fecha, @RequestParam("destacado") int destacado, @RequestParam("salario") double salario, @RequestParam("detalles") String detalles) {
-		
-		
-		System.out.println(nombre);
-		System.out.println(descripcion);
-		System.out.println(estatus);
-		System.out.println(fecha);
-		System.out.println(destacado);
-		System.out.println(salario);
-		System.out.println(detalles);
-		
+	public String save(Vacante vacante) {
+		vacanteService.guardar(vacante);		
+		return "vacantes/listVacantes";
+	}
+	
+	@RequestMapping(value = "/index")
+	public String mostrarIndex(Model model) {
+		List<Vacante> lista = vacanteService.buscarTodas();
+		model.addAttribute("vacantes",lista);
 		return "vacantes/listVacantes";
 	}
 }
