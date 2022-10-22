@@ -1,6 +1,7 @@
 package com.rrojas.SpringWebEmpleos.model;
 
 import java.util.Date;
+import com.rrojas.SpringWebEmpleos.model.Categoria;
 
 public class Vacante {
 
@@ -13,6 +14,7 @@ public class Vacante {
 	private String image = "no-image.png";
 	private String status;
 	private String detalles;
+	private Categoria categoria;
 
 	public Vacante() {
 
@@ -84,7 +86,6 @@ public class Vacante {
 		this.image = image;
 	}
 	
-	
 
 	public String getStatus() {
 		return status;
@@ -101,12 +102,22 @@ public class Vacante {
 	public void setDetalles(String detalles) {
 		this.detalles = detalles;
 	}
+	
+	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 	@Override
 	public String toString() {
 		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
 				+ ", salario=" + salario + ", destacado=" + destacado + ", image=" + image + ", status=" + status
-				+ ", detalles=" + detalles + "]";
+				+ ", detalles=" + detalles + ", categoria=" + categoria + "]";
 	}
 
 }

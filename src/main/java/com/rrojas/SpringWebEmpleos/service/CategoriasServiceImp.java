@@ -19,8 +19,32 @@ public class CategoriasServiceImp implements CategoriasService {
 		cat1.setId(1);
 		cat1.setNombre("Contabilidad");
 		cat1.setDescripcion("Descripción de la categoria de contabilidad");
+		
+		Categoria cat2 = new Categoria();
+		cat2.setId(2);
+		cat2.setNombre("Finanzas");
+		cat2.setDescripcion("Descripción de la categoria de finanzas");
+		
+		Categoria cat3 = new Categoria();
+		cat3.setId(3);
+		cat3.setNombre("Informatica");
+		cat3.setDescripcion("Descripción de la categoria de informatica");
+		
+		Categoria cat4 = new Categoria();
+		cat4.setId(4);
+		cat4.setNombre("Arquitectura");
+		cat4.setDescripcion("Descripción de la categoria de arquitectura");
+		
+		Categoria cat5 = new Categoria();
+		cat5.setId(5);
+		cat5.setNombre("Comunicación");
+		cat5.setDescripcion("Descripción de la categoria de Comunicación");
 
 		lista.add(cat1);
+		lista.add(cat2);
+		lista.add(cat3);
+		lista.add(cat4);
+		lista.add(cat5);
 	}
 
 	public void save(Categoria categoria) {

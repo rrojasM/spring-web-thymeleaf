@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rrojas.SpringWebEmpleos.model.Vacante;
+import com.rrojas.SpringWebEmpleos.service.CategoriasService;
 import com.rrojas.SpringWebEmpleos.service.VacantesService;
 
 @Controller
@@ -29,7 +30,10 @@ import com.rrojas.SpringWebEmpleos.service.VacantesService;
 public class VacantesController {
 
 	@Autowired
-	VacantesService vacanteService;
+	private VacantesService vacanteService;
+	
+	@Autowired
+	private CategoriasService categoriaService;
 
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model model) {
@@ -48,7 +52,8 @@ public class VacantesController {
 	}
 
 	@GetMapping("/create")
-	public String crearVacante(Vacante vacante) {
+	public String crearVacante(Vacante vacante, Model model) {
+		model.addAttribute("categorias", categoriaService.buscarTodas());
 		return "vacantes/formVacante";
 	}
 
