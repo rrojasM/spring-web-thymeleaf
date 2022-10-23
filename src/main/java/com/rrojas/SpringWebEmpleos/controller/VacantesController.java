@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rrojas.SpringWebEmpleos.model.Vacante;
 import com.rrojas.SpringWebEmpleos.service.CategoriasService;
 import com.rrojas.SpringWebEmpleos.service.VacantesService;
+import com.rrojas.SpringWebEmpleos.utils.Utileria;
 
 @Controller
 @RequestMapping("/vacantes")
@@ -31,7 +33,7 @@ public class VacantesController {
 
 	@Autowired
 	private VacantesService vacanteService;
-	
+
 	@Autowired
 	private CategoriasService categoriaService;
 
@@ -58,7 +60,8 @@ public class VacantesController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(Vacante vacante, BindingResult result, RedirectAttributes attributes) {
+	public String save(Vacante vacante, BindingResult result, RedirectAttributes attributes,
+			@RequestParam("archivoImagen") MultipartFile multiPart) {
 
 		if (result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
@@ -67,9 +70,17 @@ public class VacantesController {
 			return "vacantes/formVacante";
 		}
 
+		if (!multiPart.isEmpty()) {
+			String ruta = "C:/Users/ruf_r/Documents/dev/thymeleaf-image/";
+			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+			if (nombreImagen != null) {
+				vacante.setImage(nombreImagen);
+			}
+		}
+
 		vacanteService.guardar(vacante);
 		System.out.println(vacante);
-		attributes.addFlashAttribute("msg","Vacante Guardada Exitosamente");
+		attributes.addFlashAttribute("msg", "Vacante Guardada Exitosamente");
 		return "redirect:/vacantes/index";
 	}
 
