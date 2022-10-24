@@ -74,7 +74,7 @@ public class VacantesController {
 			String ruta = "C:/Users/ruf_r/Documents/dev/thymeleaf-image/";
 			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
 			if (nombreImagen != null) {
-				vacante.setImage(nombreImagen);
+				vacante.setImagen(nombreImagen);
 			}
 		}
 

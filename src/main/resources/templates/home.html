@@ -43,7 +43,7 @@
                 <hr />
                 <div th:each="vacante: ${vacantes}" class="row justify-content-center align-items-center">
                     <div class="col-md-3">
-                        <img th:src="@{/img/{img}(img=${vacante.image})}" class="rounded mx-auto d-block img-thumbnail" style="width: 180px; height: 180px;" />
+                        <img th:src="@{/img/{img}(img=${vacante.imagen})}" class="rounded mx-auto d-block img-thumbnail" style="width: 180px; height: 180px;" />
                     </div>
                     <div class="col-md-9">
                         <h2 th:text="${vacante.nombre}"></h2>

@@ -31,7 +31,7 @@ public class VacantesServiceImp implements VacantesService {
 			vacante1.setFecha(formatDate.parse("10-10-2022"));
 			vacante1.setSalario(25000.0);
 			vacante1.setDestacado(1);
-			vacante1.setImage("logo1.png");
+			vacante1.setImagen("logo1.png");
 
 			Vacante vacante2 = new Vacante();
 			vacante2.setId(2);
@@ -40,7 +40,7 @@ public class VacantesServiceImp implements VacantesService {
 			vacante2.setFecha(formatDate.parse("10-10-2022"));
 			vacante2.setSalario(28000.0);
 			vacante2.setDestacado(0);
-			vacante2.setImage("logo2.png");
+			vacante2.setImagen("logo2.png");
 
 			Vacante vacante3 = new Vacante();
 			vacante3.setId(3);
@@ -49,7 +49,7 @@ public class VacantesServiceImp implements VacantesService {
 			vacante3.setFecha(formatDate.parse("10-10-2022"));
 			vacante3.setSalario(23000.0);
 			vacante3.setDestacado(0);
-			vacante3.setImage("logo3.png");
+			vacante3.setImagen("logo3.png");
 
 			Vacante vacante4 = new Vacante();
 			vacante4.setId(4);

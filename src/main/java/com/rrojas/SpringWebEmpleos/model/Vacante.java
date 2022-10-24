@@ -1,34 +1,36 @@
 package com.rrojas.SpringWebEmpleos.model;
 
 import java.util.Date;
-import com.rrojas.SpringWebEmpleos.model.Categoria;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "Vacantes")
 public class Vacante {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private String nombre;
 	private String descripcion;
 	private Date fecha;
 	private Double salario;
 	private Integer destacado;
-	private String image = "no-image.png";
-	private String status;
+	private String imagen = "no-image.png";
+	private String estatus;
 	private String detalles;
+	// @Transient
+	@OneToOne
+	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
-
-	public Vacante() {
-
-	}
-
-	public Vacante(Integer id, String nombre, String descripcion, Date fecha, Double salario, Integer destacado) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.fecha = fecha;
-		this.salario = salario;
-		this.destacado = destacado;
-	}
 
 	public Integer getId() {
 		return id;
@@ -78,21 +80,20 @@ public class Vacante {
 		this.destacado = destacado;
 	}
 
-	public String getImage() {
-		return image;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
-
-	public String getStatus() {
-		return status;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 
 	public String getDetalles() {
@@ -102,8 +103,6 @@ public class Vacante {
 	public void setDetalles(String detalles) {
 		this.detalles = detalles;
 	}
-	
-	
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -116,7 +115,7 @@ public class Vacante {
 	@Override
 	public String toString() {
 		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", destacado=" + destacado + ", image=" + image + ", status=" + status
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + ", estatus=" + estatus
 				+ ", detalles=" + detalles + ", categoria=" + categoria + "]";
 	}
 

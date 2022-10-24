@@ -7,14 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Categorias")
-public class Categoria {
+@Table(name = "Perfiles")
+public class Perfil {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nombre;
-	private String descripcion;
+	private String perfil;
 
 	public Integer getId() {
 		return id;
@@ -24,24 +23,17 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getPerfil() {
+		return perfil;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
+		return "Perfil [id=" + id + ", perfil=" + perfil + "]";
 	}
+
 }
