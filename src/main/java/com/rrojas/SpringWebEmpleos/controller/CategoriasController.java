@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,5 +48,21 @@ public class CategoriasController {
 		categoriasService.guardar(categoria);
 		attributes.addFlashAttribute("msg", "Los datos de la categoria fueron guardados");
 		return "redirect:/categorias/index";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") int idCategoria, RedirectAttributes attributes) {
+		
+		categoriasService.eliminar(idCategoria);
+		attributes.addFlashAttribute("msg", "Categoria eliminada.");
+		return "redirect:/categorias/index";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") int idCategoria, Model model) {
+		Categoria categoria = categoriasService.buscarPorId(idCategoria);
+		model.addAttribute("categoria", categoria);
+		
+		return "categorias/formCategoria";
 	}
 }

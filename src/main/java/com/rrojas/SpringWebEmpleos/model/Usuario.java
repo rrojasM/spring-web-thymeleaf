@@ -27,9 +27,7 @@ public class Usuario {
 	private String password;
 	private Integer estatus;
 
-	public void setEstatus(Integer estatus) {
-		this.estatus = estatus;
-	}
+	
 
 	private Date fechaRegistro;
 
@@ -43,6 +41,10 @@ public class Usuario {
 		}
 
 		perfiles.add(tempPerfil);
+	}
+	
+	public void setEstatus(Integer estatus) {
+		this.estatus = estatus;
 	}
 
 	public Integer getId() {
