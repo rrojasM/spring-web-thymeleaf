@@ -14,6 +14,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,22 +41,29 @@ public class VacantesController {
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model model) {
 		Vacante vacante = vacanteService.buscarPorId(idVacante);
-		System.out.println("VACANTE: " + vacante);
 		model.addAttribute("vacante", vacante);
-
 		return "detalle";
 	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") int idVacante, Model model) {
+		Vacante vacante = vacanteService.buscarPorId(idVacante);
+		model.addAttribute("vacante", vacante);
+		//model.addAttribute("categorias", categoriaService.buscarTodas());
+		
+		return "vacantes/formVacante";
+	}
 
-	@GetMapping("/delete")
-	public String eliminar(@RequestParam("id") int idVacante, Model model) {
-		System.out.println("Borrando vacante con ID: " + idVacante);
-		model.addAttribute("id", idVacante);
-		return "mensaje";
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") int idVacante, RedirectAttributes attributes) {
+		vacanteService.eliminar(idVacante);
+		attributes.addFlashAttribute("msg", "Vacante eliminada.");
+		return "redirect:/vacantes/index";
 	}
 
 	@GetMapping("/create")
 	public String crearVacante(Vacante vacante, Model model) {
-		model.addAttribute("categorias", categoriaService.buscarTodas());
+		//model.addAttribute("categorias", categoriaService.buscarTodas());
 		return "vacantes/formVacante";
 	}
 
@@ -79,7 +87,6 @@ public class VacantesController {
 		}
 
 		vacanteService.guardar(vacante);
-		System.out.println(vacante);
 		attributes.addFlashAttribute("msg", "Vacante Guardada Exitosamente");
 		return "redirect:/vacantes/index";
 	}
@@ -89,6 +96,11 @@ public class VacantesController {
 		List<Vacante> lista = vacanteService.buscarTodas();
 		model.addAttribute("vacantes", lista);
 		return "vacantes/listVacantes";
+	}
+	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("categorias", categoriaService.buscarTodas());
 	}
 
 	@InitBinder

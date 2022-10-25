@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrojas.SpringWebEmpleos.model.Vacante;
@@ -19,9 +20,8 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String MostrarHome(Model model) {
-		List<Vacante> listaVacantes = vacantesService.buscarTodas();
-		
-		model.addAttribute("vacantes", listaVacantes);
+		//List<Vacante> listaVacantes = vacantesService.buscarTodas();
+		//model.addAttribute("vacantes", listaVacantes);
 		return "home";
 	}
 
@@ -53,9 +53,13 @@ public class HomeController {
 
 	@RequestMapping("/tabla")
 	public String mostrarTabla(Model model) {
-		//List<Vacante> lista = getVacantes();
-		List<Vacante> lista = vacantesService.buscarTodas();
+		List<Vacante> lista = vacantesService.buscarDestacadas();
 		model.addAttribute("vacante", lista);
 		return "tabla";
+	}
+	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("vacantes", vacantesService.buscarDestacadas());
 	}
 }
