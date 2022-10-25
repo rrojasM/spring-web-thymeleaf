@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -104,8 +106,8 @@ public class HomeController {
 	@RequestMapping("/search")
 	public String buscar(@ModelAttribute("search") Vacante vacante, Model model) {
 		System.out.println("Buscando por " + vacante);
-		
-		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("descripcion", 
+
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("descripcion",
 				ExampleMatcher.GenericPropertyMatchers.contains());
 
 		Example<Vacante> example = Example.of(vacante, matcher);
@@ -115,7 +117,7 @@ public class HomeController {
 		return "home";
 
 	}
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
