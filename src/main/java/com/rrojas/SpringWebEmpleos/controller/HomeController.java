@@ -3,23 +3,27 @@ package com.rrojas.SpringWebEmpleos.controller;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.rrojas.SpringWebEmpleos.model.Perfil;
 import com.rrojas.SpringWebEmpleos.model.Usuario;
 import com.rrojas.SpringWebEmpleos.model.Vacante;
@@ -39,11 +43,31 @@ public class HomeController {
 	@Autowired
 	private CategoriasService categoriaService;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@RequestMapping("/")
-	public String MostrarHome(Model model) {
-		// List<Vacante> listaVacantes = vacantesService.buscarTodas();
-		// model.addAttribute("vacantes", listaVacantes);
+	public String MostrarHome() {
 		return "home";
+	}
+
+	@GetMapping("/index")
+	public String mostrarIndex(Authentication auth, HttpSession session) {
+		String username = auth.getName();
+		System.out.println("USERNAME " + username);
+
+		for (GrantedAuthority rol : auth.getAuthorities()) {
+			System.out.println("ROL " + rol.getAuthority());
+		}
+
+		if (session.getAttribute("usuario") == null) {
+			Usuario usuario = usuarioService.buscarPorUsername(username);
+			usuario.setPassword(null);
+			System.out.println("Usuario: " + usuario);
+			session.setAttribute("usuario", usuario);
+		}
+
+		return "redirect:/";
 	}
 
 	@GetMapping("/signup")
@@ -53,6 +77,11 @@ public class HomeController {
 
 	@PostMapping("/signup")
 	public String guardarRegistro(Usuario usuario, RedirectAttributes attributes) {
+
+		String pwdPlano = usuario.getPassword();
+		String pwdEncriptado = passwordEncoder.encode(pwdPlano);
+		System.out.println("Password Encryp" + pwdEncriptado);
+		usuario.setPassword(pwdEncriptado);
 		usuario.setEstatus(1); // Activado por defecto
 		usuario.setFechaRegistro(new Date()); // Fecha de Registro, la fecha actual del servidor
 
@@ -68,32 +97,6 @@ public class HomeController {
 		attributes.addFlashAttribute("msg", "El registro fue guardado correctamente!");
 
 		return "redirect:/usuarios/index";
-	}
-
-	@RequestMapping("/listado")
-	public String mostrarListado(Model model) {
-
-		List<String> lista = new LinkedList<>();
-		lista.add("Ingeniero en sistemas");
-		lista.add("Auxiliar de contabilidad");
-		lista.add("Vendedor");
-		lista.add("Arquitecto");
-
-		model.addAttribute("empleos", lista);
-
-		return "listado";
-	}
-
-	@RequestMapping("/detalle")
-	public String mostrarDetalleVacante(Model model) {
-		Vacante vacante = new Vacante();
-		vacante.setNombre("Ingeniero en sistemas");
-		vacante.setDescripcion("Solicita ingeniero para soporte");
-		vacante.setFecha(new Date());
-		vacante.setSalario(1850.0);
-
-		model.addAttribute("vacante", vacante);
-		return "detalle";
 	}
 
 	@RequestMapping("/tabla")
@@ -116,6 +119,29 @@ public class HomeController {
 
 		return "home";
 
+	}
+
+	@GetMapping("/login")
+	public String mostrarLogin() {
+		return "formLogin";
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+		logoutHandler.logout(request, null, null);
+		return "redirect:/";
+	}
+
+	@GetMapping("/bcrypt/{texto}")
+	@ResponseBody
+	public String encriptar(@PathVariable("texto") String texto) {
+		return texto + " Encriptado: " + passwordEncoder.encode(texto);
+	}
+	
+	@GetMapping("/about")
+	public String mostrarAcerca() {			
+		return "acerca";
 	}
 
 	@InitBinder

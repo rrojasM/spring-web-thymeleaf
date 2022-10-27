@@ -20,7 +20,6 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	
 	@GetMapping("/index")
 	public String mostrarIndex(Model model) {
 		List<Usuario> lista = usuarioService.buscarTodos();
