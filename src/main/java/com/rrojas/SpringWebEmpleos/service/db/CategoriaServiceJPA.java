@@ -28,10 +28,7 @@ public class CategoriaServiceJPA implements CategoriasService {
 	public Categoria buscarPorId(Integer idCategoria) {
 		// TODO Auto-generated method stub
 		Optional<Categoria> optional = categoriasRepo.findById(idCategoria);
-		if (optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
+		return optional.orElse(null);
 	}
 
 	@Override

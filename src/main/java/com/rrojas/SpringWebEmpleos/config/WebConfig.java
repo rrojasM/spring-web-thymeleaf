@@ -10,10 +10,13 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Value("${spring.servlet.multipart.location}")
 	private String rutaImagenes;
+	@Value("${empleosapp.ruta.cv}")
+	private String rutaCv;
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// registry.addResourceHandler("/logos/**").addResourceLocations("file:/empleos/img-vacantes/");
 		// // Linux C:\Users\Ruf Rojas\Documents\thymeleaf-image
 		registry.addResourceHandler("/logos/**").addResourceLocations("file:C:/Users/thymeleaf-image/"); // Windows
+		registry.addResourceHandler("/cv/**").addResourceLocations("file:"+rutaCv);
 	}
 
 }

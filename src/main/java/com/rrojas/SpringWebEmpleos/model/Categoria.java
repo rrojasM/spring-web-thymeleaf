@@ -1,5 +1,9 @@
 package com.rrojas.SpringWebEmpleos.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.springframework.context.annotation.Bean;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Categorias")
+@EqualsAndHashCode
 public class Categoria {
 
 	@Id
