@@ -7,11 +7,18 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<link rel="icon" href="favicon.ico" />
+	<link rel="icon" href="favicon.ico">
 
 	<title>Jobs App | Funny Jobs.</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+	<!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
 </head>
 
 <body>
@@ -48,10 +55,10 @@
 								<td th:text="${vacante.estatus}"></td>
 								<td th:text="${vacante.destacado == 1 ? 'SI' : 'NO'}"></td>
 								<td>
-									<a th:href="@{/vacantes/edit/{id} (id=${vacante.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro.">
+									<a th:href="@{/vacantes/edit/{id} (id=${vacante.id}) }" class="btn btn-success btn-sm" role="button" title="Editar">
 										<i class="fas fa-pencil-alt"  aria-hidden="true"></i>
 									</a>
-									<a th:href="@{/vacantes/delete/{id} (id=${vacante.id}) }" onclick="confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro.">
+									<a th:href="@{/vacantes/delete/{id} (id=${vacante.id}) }" onclick="confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar">
 										<i class="fas fa-trash" aria-hidden="true"></i>
 									</a>
 								</td>

@@ -12,8 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
 	private String rutaImagenes;
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// registry.addResourceHandler("/logos/**").addResourceLocations("file:/empleos/img-vacantes/");
-		// // Linux
-		registry.addResourceHandler("/logos/**").addResourceLocations("file:C:/Users/ruf_r/Documents/dev/thymeleaf-image/"); // Windows
+		// // Linux C:\Users\Ruf Rojas\Documents\thymeleaf-image
+		registry.addResourceHandler("/logos/**").addResourceLocations("file:C:/Users/thymeleaf-image/"); // Windows
 	}
 
 }
